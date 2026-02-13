@@ -1,0 +1,41 @@
+# mesh 좌표축 config
+mesh의 원점이 ee_link에 부착되도록 설정
++z방향 : 통신선
++x방향 : gripper부착면
+
+radius : 41mm
+depth : 25.40mm
+
+-> visual mesh는 이걸로 하되, collision은 cylinder로  -> urdf의 오류가 있어 일단 visual mesh와 동일하게 설정 (hdr35_20_ati_dg5f_l.urdf에서)
+
+flange : 5.1mm
+
+code example
+<link name="axia_80_ft_sensor">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshfile dir"/>
+    </geometry>
+  </visual>
+
+  <collision>
+    <origin xyz="0.0127 0 0" rpy="0 0 0"/>
+    <geometry>
+      <cylinder radius="0.041" length="0.0254"/>
+    </geometry>
+  </collision>
+  
+  </link>
+  
+  
+  
+# hdr35_20의 flange mesh의 두께 : 5.1mm, raidus : 62.5mm 
+현재 hdr35_20의 flange_link의 mesh와 ati sensor의 mesh의 축은 동일함 (rotation 없이 그대로)
+
+
+# ft sensor 관련 tip
+ft sensor의 값을 불러오는 get_link_incoming_joint_force()함수 때문에 
+hdr35_20_ati_dg5f_l_temp_flattened.usd에 있는 axia_80_ft_sensor의 xform아래에 force_sensor_joint의 fixed joint를 놔둠
+(이는 ft sensor와 ll_dg_mount를 연결하는 fixed joint <- ft sensor가 읽는 값 : forge환경의 franka_mimic.usd 참고)
+
