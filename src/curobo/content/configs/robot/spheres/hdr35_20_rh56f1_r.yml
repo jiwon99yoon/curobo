@@ -1,0 +1,230 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+## HDR35_20 + RH56F1_R Collision Spheres Configuration
+##
+## Combined robot: 6-DOF arm + 5-finger gripper (18-DOF total)
+## Arm spheres: UR10e-style uniform spacing
+## Gripper spheres: Simplified per-finger coverage
+##
+
+robot: 'HDR35_20_RH56F1_R'
+collision_spheres:
+  # ===== ARM LINKS (from HDR35_20) =====
+  base_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.12
+    - center: [-0.15, 0.0, 0.05]
+      radius: 0.1
+    - center: [0.15, 0.0, 0.05]
+      radius: 0.1
+    - center: [0.0, 0.15, 0.05]
+      radius: 0.1
+    - center: [0.0, -0.15, 0.05]
+      radius: 0.1
+
+  lower_frame_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.08]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.16]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.24]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.32]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.4]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.48]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.56]
+      radius: 0.1
+
+  upper_frame_link:
+    - center: [0.0, 0.0, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.07909090909090909, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.15818181818181817, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.23727272727272725, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.31636363636363635, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.39545454545454545, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.4745454545454545, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.5536363636363636, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.6327272727272727, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.7118181818181818, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.7909090909090909, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.87, -0.04]
+      radius: 0.09
+
+  arm_link:
+    - center: [0.0, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.07545454545454545, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.1509090909090909, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.22636363636363638, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.3018181818181818, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.37727272727272726, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.45272727272727276, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.5281818181818182, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.6036363636363636, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.6790909090909091, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.7545454545454545, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.83, 0.09, 0.11]
+      radius: 0.09
+
+  wrist_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.065, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.13, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.195, 0.0, 0.0]
+      radius: 0.08
+
+  wrist_holder_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.05833333333333333, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.11666666666666665, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.175, 0.0, 0.0]
+      radius: 0.07
+
+  flange_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.06
+    - center: [0.01, 0.0, 0.0]
+      radius: 0.05
+
+  # # ===== GRIPPER LINKS (RH56F1_R) =====
+  # gripper_base_link:
+  #   - center: [0.0, 0.0, 0.0]
+  #     radius: 0.04
+  #   - center: [0.02, 0.0, 0.0]
+  #     radius: 0.035
+  #   - center: [0.04, 0.0, 0.0]
+  #     radius: 0.03
+
+  # ===== GRIPPER LINKS (RH56F1_R with sensors) =====
+  gripper_base_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.04
+    - center: [0.001, 0.0, 0.015]
+      radius: 0.038
+    - center: [0.001, 0.0, 0.030]
+      radius: 0.035
+
+  plam_1:
+    - center: [0.0, 0.0, 0.03]
+      radius: 0.035
+    - center: [0.0, 0.0, 0.05]
+      radius: 0.035
+    - center: [0.0, 0.0, 0.07]
+      radius: 0.035
+
+  # THUMB (4 segments)
+  right_thumb_1:
+    - center: [0.0, 0.003, 0.0]
+      radius: 0.012
+    - center: [0.0, 0.008, 0.0]
+      radius: 0.012
+
+  right_thumb_2:
+    - center: [-0.01, 0.015, 0.0]
+      radius: 0.015
+    - center: [-0.020, 0.025, 0.0]
+      radius: 0.015
+
+  right_thumb_3:
+    - center: [-0.007, 0.008, 0.003]
+      radius: 0.012
+    - center: [-0.012, 0.012, 0.006]
+      radius: 0.012
+
+  right_thumb_4:
+    - center: [-0.006, 0.006, 0.004]
+      radius: 0.011
+    - center: [-0.010, 0.010, 0.006]
+      radius: 0.011
+
+  # INDEX FINGER (2 segments)
+  right_index_1:
+    - center: [0.0, 0.008, 0.003]
+      radius: 0.012
+    - center: [0.001, 0.018, 0.006]
+      radius: 0.012
+
+  right_index_2:
+    - center: [-0.002, 0.010, 0.003]
+      radius: 0.011
+    - center: [-0.004, 0.020, 0.005]
+      radius: 0.011
+
+  # MIDDLE FINGER (2 segments)
+  right_middle_1:
+    - center: [0.0, 0.008, 0.004]
+      radius: 0.012
+    - center: [0.001, 0.018, 0.007]
+      radius: 0.012
+
+  right_middle_2:
+    - center: [-0.002, 0.011, 0.003]
+      radius: 0.011
+    - center: [-0.004, 0.022, 0.006]
+      radius: 0.011
+
+  # RING FINGER (2 segments)
+  right_ring_1:
+    - center: [0.0, 0.008, 0.004]
+      radius: 0.012
+    - center: [0.001, 0.017, 0.008]
+      radius: 0.012
+
+  right_ring_2:
+    - center: [-0.002, 0.010, 0.004]
+      radius: 0.011
+    - center: [-0.004, 0.020, 0.007]
+      radius: 0.011
+
+  # LITTLE FINGER (2 segments)
+  right_little_1:
+    - center: [0.0, 0.008, 0.004]
+      radius: 0.011
+    - center: [0.001, 0.015, 0.008]
+      radius: 0.011
+
+  right_little_2:
+    - center: [-0.002, 0.008, 0.004]
+      radius: 0.010
+    - center: [-0.004, 0.015, 0.007]
+      radius: 0.010

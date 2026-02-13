@@ -1,0 +1,527 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+## Dual HDR35_20 + ATI Collision Spheres Configuration
+##
+## Two robots combined:
+## - rh56_ prefix: HDR35_20 + ATI + RH56F1_R_sensor @ (0.75, -1.3, -0.1)
+## - dg5f_ prefix: HDR35_20 + ATI + DG5F_L @ (0.75, 1.3, -0.1)
+##
+
+robot: 'dual_hdr35_20_ati'
+collision_spheres:
+  # =====================================================
+  # RH56 ROBOT (prefix: rh56_)
+  # Position: (0.75, -1.3, -0.1)
+  # =====================================================
+
+  # ===== ARM LINKS =====
+  rh56_base_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.12
+    - center: [-0.15, 0.0, 0.05]
+      radius: 0.1
+    - center: [0.15, 0.0, 0.05]
+      radius: 0.1
+    - center: [0.0, 0.15, 0.05]
+      radius: 0.1
+    - center: [0.0, -0.15, 0.05]
+      radius: 0.1
+
+  rh56_lower_frame_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.08]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.16]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.24]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.32]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.4]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.48]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.56]
+      radius: 0.1
+
+  rh56_upper_frame_link:
+    - center: [0.0, 0.0, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.079, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.158, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.237, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.316, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.395, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.475, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.554, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.633, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.712, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.791, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.87, -0.04]
+      radius: 0.09
+
+  rh56_arm_link:
+    - center: [0.0, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.075, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.151, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.226, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.302, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.377, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.453, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.528, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.604, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.679, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.755, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.83, 0.09, 0.11]
+      radius: 0.09
+
+  rh56_wrist_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.065, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.13, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.195, 0.0, 0.0]
+      radius: 0.08
+
+  rh56_wrist_holder_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.058, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.117, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.175, 0.0, 0.0]
+      radius: 0.07
+
+  rh56_flange_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.06
+    - center: [0.005, 0.0, 0.0]
+      radius: 0.05
+
+  rh56_axia_80_ft_sensor:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.042
+    - center: [0.0127, 0.0, 0.0]
+      radius: 0.042
+    - center: [0.0254, 0.0, 0.0]
+      radius: 0.042
+
+  # ===== RH56 GRIPPER LINKS =====
+  rh56_gripper_base_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.04
+    - center: [0.001, 0.0, 0.015]
+      radius: 0.038
+    - center: [0.001, 0.0, 0.030]
+      radius: 0.035
+
+  rh56_plam_1:
+    - center: [0.0, 0.0, 0.03]
+      radius: 0.035
+    - center: [0.0, 0.0, 0.05]
+      radius: 0.035
+    - center: [0.0, 0.0, 0.07]
+      radius: 0.035
+
+  rh56_right_thumb_1:
+    - center: [0.0, 0.003, 0.0]
+      radius: 0.012
+    - center: [0.0, 0.008, 0.0]
+      radius: 0.012
+
+  rh56_right_thumb_2:
+    - center: [-0.01, 0.015, 0.0]
+      radius: 0.015
+    - center: [-0.020, 0.025, 0.0]
+      radius: 0.015
+
+  rh56_right_index_1:
+    - center: [0.0, 0.008, 0.003]
+      radius: 0.012
+    - center: [0.001, 0.018, 0.006]
+      radius: 0.012
+
+  rh56_right_middle_1:
+    - center: [0.0, 0.008, 0.004]
+      radius: 0.012
+    - center: [0.001, 0.018, 0.007]
+      radius: 0.012
+
+  rh56_right_ring_1:
+    - center: [0.0, 0.008, 0.004]
+      radius: 0.012
+    - center: [0.001, 0.017, 0.008]
+      radius: 0.012
+
+  rh56_right_little_1:
+    - center: [0.0, 0.008, 0.004]
+      radius: 0.011
+    - center: [0.001, 0.015, 0.008]
+      radius: 0.011
+
+  # =====================================================
+  # DG5F ROBOT (prefix: dg5f_)
+  # Position: (0.75, 1.3, -0.1)
+  # =====================================================
+
+  # ===== ARM LINKS =====
+  dg5f_base_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.12
+    - center: [-0.15, 0.0, 0.05]
+      radius: 0.1
+    - center: [0.15, 0.0, 0.05]
+      radius: 0.1
+    - center: [0.0, 0.15, 0.05]
+      radius: 0.1
+    - center: [0.0, -0.15, 0.05]
+      radius: 0.1
+
+  dg5f_lower_frame_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.08]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.16]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.24]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.32]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.4]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.48]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.56]
+      radius: 0.1
+
+  dg5f_upper_frame_link:
+    - center: [0.0, 0.0, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.079, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.158, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.237, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.316, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.395, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.475, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.554, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.633, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.712, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.791, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.87, -0.04]
+      radius: 0.09
+
+  dg5f_arm_link:
+    - center: [0.0, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.075, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.151, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.226, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.302, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.377, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.453, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.528, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.604, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.679, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.755, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.83, 0.09, 0.11]
+      radius: 0.09
+
+  dg5f_wrist_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.065, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.13, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.195, 0.0, 0.0]
+      radius: 0.08
+
+  dg5f_wrist_holder_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.058, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.117, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.175, 0.0, 0.0]
+      radius: 0.07
+
+  dg5f_flange_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.06
+    - center: [0.005, 0.0, 0.0]
+      radius: 0.05
+
+  dg5f_axia_80_ft_sensor:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.042
+    - center: [0.0127, 0.0, 0.0]
+      radius: 0.042
+    - center: [0.0254, 0.0, 0.0]
+      radius: 0.042
+
+  # ===== DG5F GRIPPER LINKS =====
+  dg5f_ll_dg_mount:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.025
+    - center: [0.0, 0.0, 0.015]
+      radius: 0.022
+
+  dg5f_ll_dg_base:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.035
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.035
+    - center: [0.0, 0.0, 0.04]
+      radius: 0.032
+
+  dg5f_ll_dg_palm:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.04
+    - center: [0.0, 0.0, 0.025]
+      radius: 0.038
+    - center: [0.0, 0.0, 0.05]
+      radius: 0.035
+    - center: [0.0, -0.02, 0.04]
+      radius: 0.025
+    - center: [0.0, 0.02, 0.04]
+      radius: 0.025
+
+  # DG5F Finger 1 (Thumb)
+  dg5f_ll_dg_1_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.018
+    - center: [0.02, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.04, 0.0, 0.0]
+      radius: 0.015
+
+  dg5f_ll_dg_1_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.0, -0.015, 0.0]
+      radius: 0.015
+    - center: [0.0, -0.03, 0.0]
+      radius: 0.014
+
+  dg5f_ll_dg_1_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, -0.02, 0.0]
+      radius: 0.014
+    - center: [0.0, -0.038, 0.0]
+      radius: 0.013
+
+  dg5f_ll_dg_1_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, -0.018, 0.0]
+      radius: 0.013
+    - center: [0.0, -0.035, 0.0]
+      radius: 0.012
+
+  dg5f_ll_dg_1_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.012
+
+  # DG5F Finger 2 (Index)
+  dg5f_ll_dg_2_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.009, 0.0, 0.013]
+      radius: 0.015
+    - center: [0.017, 0.0, 0.026]
+      radius: 0.014
+
+  dg5f_ll_dg_2_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.013
+
+  dg5f_ll_dg_2_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.012
+
+  dg5f_ll_dg_2_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.012]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.024]
+      radius: 0.011
+
+  dg5f_ll_dg_2_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.011
+
+  # DG5F Finger 3 (Middle)
+  dg5f_ll_dg_3_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.009, 0.0, 0.013]
+      radius: 0.015
+    - center: [0.017, 0.0, 0.026]
+      radius: 0.014
+
+  dg5f_ll_dg_3_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.013
+
+  dg5f_ll_dg_3_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.012
+
+  dg5f_ll_dg_3_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.012]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.024]
+      radius: 0.011
+
+  dg5f_ll_dg_3_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.011
+
+  # DG5F Finger 4 (Ring)
+  dg5f_ll_dg_4_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.009, 0.0, 0.013]
+      radius: 0.015
+    - center: [0.017, 0.0, 0.026]
+      radius: 0.014
+
+  dg5f_ll_dg_4_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.013
+
+  dg5f_ll_dg_4_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.012
+
+  dg5f_ll_dg_4_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.012]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.024]
+      radius: 0.011
+
+  dg5f_ll_dg_4_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.011
+
+  # DG5F Finger 5 (Pinky)
+  dg5f_ll_dg_5_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, 0.014, 0.019]
+      radius: 0.014
+    - center: [0.0, 0.028, 0.038]
+      radius: 0.013
+
+  dg5f_ll_dg_5_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.015]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.03]
+      radius: 0.012
+
+  dg5f_ll_dg_5_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.011
+
+  dg5f_ll_dg_5_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.018]
+      radius: 0.011
+    - center: [0.0, 0.0, 0.035]
+      radius: 0.010
+
+  dg5f_ll_dg_5_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.010

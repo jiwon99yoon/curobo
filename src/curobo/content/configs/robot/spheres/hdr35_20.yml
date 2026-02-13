@@ -1,0 +1,125 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+## HDR35_20 Collision Spheres Configuration
+##
+## UR10e-style uniform spacing with 47 spheres
+## Generated from geometric analysis with optimized arm_link offset (Y=0.09, Z=0.11)
+##
+
+robot: 'HDR35_20'
+collision_spheres:
+  base_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.12
+    - center: [-0.15, 0.0, 0.05]
+      radius: 0.10
+    - center: [0.15, 0.0, 0.05]
+      radius: 0.10
+    - center: [0.0, 0.15, 0.05]
+      radius: 0.10
+    - center: [0.0, -0.15, 0.05]
+      radius: 0.10
+
+  lower_frame_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.10
+    - center: [0.0, 0.0, 0.08]
+      radius: 0.10
+    - center: [0.0, 0.0, 0.16]
+      radius: 0.10
+    - center: [0.0, 0.0, 0.24]
+      radius: 0.10
+    - center: [0.0, 0.0, 0.32]
+      radius: 0.10
+    - center: [0.0, 0.0, 0.40]
+      radius: 0.10
+    - center: [0.0, 0.0, 0.48]
+      radius: 0.10
+    - center: [0.0, 0.0, 0.56]
+      radius: 0.10
+
+  upper_frame_link:
+    - center: [0.0, 0.0, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.0791, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.1582, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.2373, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.3164, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.3955, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.4745, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.5536, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.6327, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.7118, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.7909, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.87, -0.04]
+      radius: 0.09
+
+  arm_link:
+    - center: [0.0, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.0755, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.1509, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.2264, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.3018, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.3773, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.4527, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.5282, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.6036, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.6791, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.7545, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.83, 0.09, 0.11]
+      radius: 0.09
+
+  wrist_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.065, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.13, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.195, 0.0, 0.0]
+      radius: 0.08
+
+  wrist_holder_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.0583, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.1167, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.175, 0.0, 0.0]
+      radius: 0.07
+
+  flange_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.06
+    - center: [0.01, 0.0, 0.0]
+      radius: 0.05

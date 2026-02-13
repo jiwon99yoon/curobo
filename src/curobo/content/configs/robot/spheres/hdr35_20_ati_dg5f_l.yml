@@ -1,0 +1,384 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+## HDR35_20 + ATI Axia80 FT Sensor + DG5F_LEFT Collision Spheres Configuration
+##
+## Combined robot: 6-DOF arm + FT sensor + 5-finger gripper (26-DOF total)
+## Arm spheres: UR10e-style uniform spacing
+## FT Sensor: ATI Axia80 (radius=41mm, depth=25.4mm)
+## Gripper spheres: Simplified per-finger coverage (fully actuated)
+##
+
+robot: 'HDR35_20_ATI_DG5F_L'
+collision_spheres:
+  # ===== ARM LINKS (from HDR35_20) =====
+  base_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.12
+    - center: [-0.15, 0.0, 0.05]
+      radius: 0.1
+    - center: [0.15, 0.0, 0.05]
+      radius: 0.1
+    - center: [0.0, 0.15, 0.05]
+      radius: 0.1
+    - center: [0.0, -0.15, 0.05]
+      radius: 0.1
+
+  lower_frame_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.08]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.16]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.24]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.32]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.4]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.48]
+      radius: 0.1
+    - center: [0.0, 0.0, 0.56]
+      radius: 0.1
+
+  upper_frame_link:
+    - center: [0.0, 0.0, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.07909090909090909, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.15818181818181817, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.23727272727272725, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.31636363636363635, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.39545454545454545, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.4745454545454545, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.5536363636363636, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.6327272727272727, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.7118181818181818, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.7909090909090909, -0.04]
+      radius: 0.09
+    - center: [0.0, 0.87, -0.04]
+      radius: 0.09
+
+  arm_link:
+    - center: [0.0, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.07545454545454545, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.1509090909090909, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.22636363636363638, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.3018181818181818, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.37727272727272726, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.45272727272727276, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.5281818181818182, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.6036363636363636, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.6790909090909091, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.7545454545454545, 0.09, 0.11]
+      radius: 0.09
+    - center: [0.83, 0.09, 0.11]
+      radius: 0.09
+
+  wrist_body_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.065, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.13, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.195, 0.0, 0.0]
+      radius: 0.08
+
+  wrist_holder_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.05833333333333333, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.11666666666666665, 0.0, 0.0]
+      radius: 0.07
+    - center: [0.175, 0.0, 0.0]
+      radius: 0.07
+
+  flange_link:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.06
+    - center: [0.005, 0.0, 0.0]
+      radius: 0.05
+
+  # ===== ATI AXIA80 FT SENSOR =====
+  # Sensor specs: radius=41mm, depth=25.4mm
+  # Mesh origin at ee_link attachment, +x direction to gripper
+  axia_80_ft_sensor:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.042
+    - center: [0.0127, 0.0, 0.0]
+      radius: 0.042
+    - center: [0.0254, 0.0, 0.0]
+      radius: 0.042
+
+  # ===== GRIPPER LINKS (DG5F_LEFT) =====
+  # Sphere positions based on URDF joint origins
+  # Radii increased for better visibility and coverage
+
+  # Gripper base links
+  ll_dg_mount:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.025
+    - center: [0.0, 0.0, 0.015]
+      radius: 0.022
+
+  ll_dg_base:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.035
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.035
+    - center: [0.0, 0.0, 0.04]
+      radius: 0.032
+
+  ll_dg_palm:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.04
+    - center: [0.0, 0.0, 0.025]
+      radius: 0.038
+    - center: [0.0, 0.0, 0.05]
+      radius: 0.035
+    - center: [0.0, -0.02, 0.04]
+      radius: 0.025
+    - center: [0.0, 0.02, 0.04]
+      radius: 0.025
+
+  # ===== Finger 1 (Thumb) =====
+  # Direction: X then -Y (unique orientation)
+  # lj_dg_1_1 origin: (-0.0162, -0.019, 0.0128)
+  # lj_dg_1_2 origin: (0.04195, 0, 0) - 42mm in +X
+  # lj_dg_1_3 origin: (0, -0.031, 0) - 31mm in -Y
+  # lj_dg_1_4 origin: (0, -0.0388, 0) - 39mm in -Y
+  # lj_dg_1_tip origin: (0, -0.0363, 0) - 36mm in -Y
+
+  ll_dg_1_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.018
+    - center: [0.02, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.04, 0.0, 0.0]
+      radius: 0.015
+
+  ll_dg_1_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.0, -0.015, 0.0]
+      radius: 0.015
+    - center: [0.0, -0.03, 0.0]
+      radius: 0.014
+
+  ll_dg_1_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, -0.02, 0.0]
+      radius: 0.014
+    - center: [0.0, -0.038, 0.0]
+      radius: 0.013
+
+  ll_dg_1_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, -0.018, 0.0]
+      radius: 0.013
+    - center: [0.0, -0.035, 0.0]
+      radius: 0.012
+
+  ll_dg_1_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.012
+
+  # ===== Finger 2 (Index) =====
+  # Direction: +Z
+  # lj_dg_2_1 origin: (-0.0071, -0.027, 0.0661) - starts from palm
+  # lj_dg_2_2 origin: (0.01765, 0, 0.0265) - 27mm in +Z
+  # lj_dg_2_3 origin: (0, 0, 0.0388) - 39mm in +Z
+  # lj_dg_2_4 origin: (0, 0, 0.0388) - 39mm in +Z
+  # lj_dg_2_tip origin: (0, 0, 0.0255) - 26mm in +Z
+
+  ll_dg_2_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.009, 0.0, 0.013]
+      radius: 0.015
+    - center: [0.017, 0.0, 0.026]
+      radius: 0.014
+
+  ll_dg_2_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.013
+
+  ll_dg_2_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.012
+
+  ll_dg_2_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.012]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.024]
+      radius: 0.011
+
+  ll_dg_2_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.011
+
+  # ===== Finger 3 (Middle) =====
+  # Direction: +Z (same as Index)
+  # lj_dg_3_1 origin: (-0.0071, -0.0025, 0.0701)
+  # Same segment lengths as Finger 2
+
+  ll_dg_3_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.009, 0.0, 0.013]
+      radius: 0.015
+    - center: [0.017, 0.0, 0.026]
+      radius: 0.014
+
+  ll_dg_3_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.013
+
+  ll_dg_3_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.012
+
+  ll_dg_3_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.012]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.024]
+      radius: 0.011
+
+  ll_dg_3_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.011
+
+  # ===== Finger 4 (Ring) =====
+  # Direction: +Z (same as Index/Middle)
+  # lj_dg_4_1 origin: (-0.0071, 0.022, 0.0621)
+  # Same segment lengths as Finger 2/3
+
+  ll_dg_4_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.016
+    - center: [0.009, 0.0, 0.013]
+      radius: 0.015
+    - center: [0.017, 0.0, 0.026]
+      radius: 0.014
+
+  ll_dg_4_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.013
+
+  ll_dg_4_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.012
+
+  ll_dg_4_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.012]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.024]
+      radius: 0.011
+
+  ll_dg_4_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.011
+
+  # ===== Finger 5 (Pinky) =====
+  # Direction: Y then +Z
+  # lj_dg_5_1 origin: (0.0103, 0.0195, 0.0182) - starts from palm
+  # lj_dg_5_2 origin: (0, 0.028, 0.0381) - 28mm Y, 38mm Z
+  # lj_dg_5_3 origin: (0, 0, 0.031) - 31mm in +Z
+  # lj_dg_5_4 origin: (0, 0, 0.0388) - 39mm in +Z
+  # lj_dg_5_tip origin: (0, 0, 0.0363) - 36mm in +Z
+
+  ll_dg_5_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.015
+    - center: [0.0, 0.014, 0.019]
+      radius: 0.014
+    - center: [0.0, 0.028, 0.038]
+      radius: 0.013
+
+  ll_dg_5_2:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.014
+    - center: [0.0, 0.0, 0.015]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.03]
+      radius: 0.012
+
+  ll_dg_5_3:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.013
+    - center: [0.0, 0.0, 0.02]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.038]
+      radius: 0.011
+
+  ll_dg_5_4:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.012
+    - center: [0.0, 0.0, 0.018]
+      radius: 0.011
+    - center: [0.0, 0.0, 0.035]
+      radius: 0.010
+
+  ll_dg_5_tip:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.010
