@@ -1,0 +1,87 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+## HDR35_20 Robot Configuration (6-DOF Hyundai Robotics Arm)
+##
+
+robot_cfg:
+  kinematics:
+    # Use pre-generated USD file instead of URDF auto-conversion
+    usd_path: "robot/hdr35_20_rh56f1_r_description/temp2.usd"
+    usd_robot_root: "/robot"
+    isaac_usd_path: ""
+    usd_flip_joints: {}
+    usd_flip_joint_limits: []
+
+    urdf_path: "robot/hdr35_20_rh56f1_r_description/hdr35_20.urdf"
+    asset_root_path: "robot/hdr35_20_rh56f1_r_description"
+    
+    base_link: "base_link"
+    ee_link: "flange_link"
+    link_names: null
+    lock_joints: null
+    extra_links: null
+
+    
+    collision_link_names: ['base_body_link', 'lower_frame_link', 'upper_frame_link', 
+                           'arm_link', 'wrist_body_link', 'wrist_holder_link', 'flange_link']
+    
+    # Collision spheres (UR10e-style uniform spacing, v4: 47 spheres)
+    # Sphere data defined in separate file for better organization
+    collision_spheres: 'spheres/hdr35_20.yml'
+
+
+    collision_sphere_buffer: 0.0
+    extra_collision_spheres: {}
+    
+    # Self-collision ignore pairs
+    self_collision_ignore: {
+      "base_body_link": ["lower_frame_link"],
+      "lower_frame_link": ["upper_frame_link", "base_body_link"],
+      "upper_frame_link": ["arm_link", "lower_frame_link"],
+      "arm_link": ["wrist_body_link", "upper_frame_link"],
+      "wrist_body_link": ["wrist_holder_link", "arm_link"],
+      "wrist_holder_link": ["flange_link", "wrist_body_link"],
+      "flange_link": ["wrist_holder_link"],
+      }
+    
+    self_collision_buffer: {
+      'base_body_link': 0.0, 
+      'lower_frame_link': 0.0, 
+      'upper_frame_link': 0.0, 
+      'arm_link': 0.0,
+      'wrist_body_link': 0.0,
+      'wrist_holder_link': 0.0,
+      'flange_link': 0.0,
+      } 
+      
+    use_global_cumul: True
+    mesh_link_names: ['base_body_link', 'lower_frame_link', 'upper_frame_link', 
+                      'arm_link', 'wrist_body_link', 'wrist_holder_link', 'flange_link']
+
+    cspace:
+      # HDR35_20 joint names (j1-j6)
+      joint_names: ['j1', 'j2', 'j3', 'j4', 'j5', 'j6']
+
+      # Retract configuration (safe home position)
+      retract_config: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      
+      # Null space weights for redundancy resolution
+      null_space_weight: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+      
+      # C-space distance weights (prioritize base joints)
+      cspace_distance_weight: [1.0, 0.9, 0.8, 0.7, 0.6, 0.5]
+      
+      # Max jerk and acceleration
+      max_jerk: 500.0
+      max_acceleration: 12.0
+      
+      # Position limit clipping
+      position_limit_clip: 0.1

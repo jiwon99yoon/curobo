@@ -1,0 +1,240 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+## Dual HDR35_20 + ATI Robot Configuration
+## Two HDR35_20 arms: RH56F1_R gripper (rh56_) + DG5F_L gripper (dg5f_)
+## 12-DOF total for arms (6+6), grippers locked
+## Based on dual_ur10e.yml format for proper inter-arm collision
+##
+
+robot_cfg:
+  kinematics:
+    usd_path: null
+    usd_robot_root: "/robot"
+    isaac_usd_path: ""
+    usd_flip_joints: {}
+    usd_flip_joint_limits: []
+
+    urdf_path: "robot/hydex_description/hydex.urdf"
+    asset_root_path: "robot/hydex_description"
+
+    base_link: "world"
+    ee_link: "rh56_gripper_base_link"
+    link_names: ["rh56_gripper_base_link", "dg5f_ll_dg_palm"]
+
+    # Lock gripper joints at fixed position
+    lock_joints: {
+      # RH56F1_R gripper joints
+      'rh56_right_thumb_1_joint': 0.0,
+      'rh56_right_thumb_2_joint': 0.0,
+      'rh56_right_index_1_joint': 0.0,
+      'rh56_right_middle_1_joint': 0.0,
+      'rh56_right_ring_1_joint': 0.0,
+      'rh56_right_little_1_joint': 0.0,
+      # DG5F_L gripper joints (20 active joints)
+      'dg5f_lj_dg_1_1': 0.0,
+      'dg5f_lj_dg_1_2': 0.0,
+      'dg5f_lj_dg_1_3': 0.0,
+      'dg5f_lj_dg_1_4': 0.0,
+      'dg5f_lj_dg_2_1': 0.0,
+      'dg5f_lj_dg_2_2': 0.0,
+      'dg5f_lj_dg_2_3': 0.0,
+      'dg5f_lj_dg_2_4': 0.0,
+      'dg5f_lj_dg_3_1': 0.0,
+      'dg5f_lj_dg_3_2': 0.0,
+      'dg5f_lj_dg_3_3': 0.0,
+      'dg5f_lj_dg_3_4': 0.0,
+      'dg5f_lj_dg_4_1': 0.0,
+      'dg5f_lj_dg_4_2': 0.0,
+      'dg5f_lj_dg_4_3': 0.0,
+      'dg5f_lj_dg_4_4': 0.0,
+      'dg5f_lj_dg_5_1': 0.0,
+      'dg5f_lj_dg_5_2': 0.0,
+      'dg5f_lj_dg_5_3': 0.0,
+      'dg5f_lj_dg_5_4': 0.0
+    }
+
+    extra_links: null
+
+    collision_link_names: [
+      # RH56 Arm links
+      'rh56_base_body_link', 'rh56_lower_frame_link', 'rh56_upper_frame_link',
+      'rh56_arm_link', 'rh56_wrist_body_link', 'rh56_wrist_holder_link', 'rh56_flange_link',
+      # RH56 ATI sensor
+      'rh56_axia_80_ft_sensor',
+      # RH56 Gripper links
+      'rh56_gripper_base_link', 'rh56_plam_1',
+      'rh56_right_thumb_1', 'rh56_right_thumb_2',
+      'rh56_right_index_1', 'rh56_right_middle_1', 'rh56_right_ring_1', 'rh56_right_little_1',
+      # DG5F Arm links
+      'dg5f_base_body_link', 'dg5f_lower_frame_link', 'dg5f_upper_frame_link',
+      'dg5f_arm_link', 'dg5f_wrist_body_link', 'dg5f_wrist_holder_link', 'dg5f_flange_link',
+      # DG5F ATI sensor
+      'dg5f_axia_80_ft_sensor',
+      # DG5F Gripper links (including tips)
+      'dg5f_ll_dg_base', 'dg5f_ll_dg_palm',
+      'dg5f_ll_dg_1_1', 'dg5f_ll_dg_1_2', 'dg5f_ll_dg_1_3', 'dg5f_ll_dg_1_4', 'dg5f_ll_dg_1_tip',
+      'dg5f_ll_dg_2_1', 'dg5f_ll_dg_2_2', 'dg5f_ll_dg_2_3', 'dg5f_ll_dg_2_4', 'dg5f_ll_dg_2_tip',
+      'dg5f_ll_dg_3_1', 'dg5f_ll_dg_3_2', 'dg5f_ll_dg_3_3', 'dg5f_ll_dg_3_4', 'dg5f_ll_dg_3_tip',
+      'dg5f_ll_dg_4_1', 'dg5f_ll_dg_4_2', 'dg5f_ll_dg_4_3', 'dg5f_ll_dg_4_4', 'dg5f_ll_dg_4_tip',
+      'dg5f_ll_dg_5_1', 'dg5f_ll_dg_5_2', 'dg5f_ll_dg_5_3', 'dg5f_ll_dg_5_4', 'dg5f_ll_dg_5_tip'
+    ]
+
+    collision_spheres: 'spheres/dual_hdr35_20_ati.yml'
+    collision_sphere_buffer: -0.01
+    extra_collision_spheres: {}
+
+    # Self-collision ignore pairs (matching single-robot configurations)
+    self_collision_ignore: {
+      # === RH56 Arm chain (from hdr35_20_ati_rh56f1_r_sensor.yml) ===
+      "rh56_base_body_link": ["rh56_lower_frame_link", "rh56_upper_frame_link", "rh56_arm_link"],
+      "rh56_lower_frame_link": ["rh56_upper_frame_link", "rh56_arm_link", "rh56_wrist_body_link"],
+      "rh56_upper_frame_link": ["rh56_arm_link", "rh56_wrist_body_link", "rh56_wrist_holder_link"],
+      "rh56_arm_link": ["rh56_wrist_body_link", "rh56_wrist_holder_link", "rh56_flange_link", "rh56_axia_80_ft_sensor", "rh56_gripper_base_link"],
+      "rh56_wrist_body_link": ["rh56_wrist_holder_link", "rh56_flange_link", "rh56_axia_80_ft_sensor", "rh56_gripper_base_link"],
+      "rh56_wrist_holder_link": ["rh56_flange_link", "rh56_axia_80_ft_sensor", "rh56_gripper_base_link", "rh56_plam_1"],
+      "rh56_flange_link": ["rh56_axia_80_ft_sensor", "rh56_gripper_base_link", "rh56_plam_1"],
+      # RH56 ATI sensor
+      "rh56_axia_80_ft_sensor": ["rh56_flange_link", "rh56_gripper_base_link", "rh56_plam_1"],
+      # RH56 Gripper
+      "rh56_gripper_base_link": ["rh56_axia_80_ft_sensor", "rh56_plam_1", "rh56_right_thumb_1", "rh56_right_index_1", "rh56_right_middle_1", "rh56_right_ring_1", "rh56_right_little_1"],
+      "rh56_plam_1": ["rh56_right_thumb_1", "rh56_right_thumb_2", "rh56_right_index_1", "rh56_right_middle_1", "rh56_right_ring_1", "rh56_right_little_1"],
+      "rh56_right_thumb_1": ["rh56_right_thumb_2", "rh56_gripper_base_link", "rh56_plam_1"],
+      "rh56_right_thumb_2": ["rh56_right_thumb_1", "rh56_plam_1"],
+      "rh56_right_index_1": ["rh56_gripper_base_link", "rh56_plam_1", "rh56_right_middle_1"],
+      "rh56_right_middle_1": ["rh56_gripper_base_link", "rh56_plam_1", "rh56_right_index_1", "rh56_right_ring_1"],
+      "rh56_right_ring_1": ["rh56_gripper_base_link", "rh56_plam_1", "rh56_right_middle_1", "rh56_right_little_1"],
+      "rh56_right_little_1": ["rh56_gripper_base_link", "rh56_plam_1", "rh56_right_ring_1"],
+
+      # === DG5F Arm chain (from hdr35_20_ati_dg5f_l.yml) ===
+      "dg5f_base_body_link": ["dg5f_lower_frame_link", "dg5f_upper_frame_link", "dg5f_arm_link"],
+      "dg5f_lower_frame_link": ["dg5f_upper_frame_link", "dg5f_arm_link", "dg5f_wrist_body_link"],
+      "dg5f_upper_frame_link": ["dg5f_arm_link", "dg5f_wrist_body_link", "dg5f_wrist_holder_link"],
+      "dg5f_arm_link": ["dg5f_wrist_body_link", "dg5f_wrist_holder_link", "dg5f_flange_link", "dg5f_axia_80_ft_sensor", "dg5f_ll_dg_base"],
+      "dg5f_wrist_body_link": ["dg5f_wrist_holder_link", "dg5f_flange_link", "dg5f_axia_80_ft_sensor", "dg5f_ll_dg_base"],
+      "dg5f_wrist_holder_link": ["dg5f_flange_link", "dg5f_axia_80_ft_sensor", "dg5f_ll_dg_base", "dg5f_ll_dg_palm"],
+      "dg5f_flange_link": ["dg5f_axia_80_ft_sensor", "dg5f_ll_dg_base", "dg5f_ll_dg_palm"],
+      # DG5F ATI sensor
+      "dg5f_axia_80_ft_sensor": ["dg5f_ll_dg_base", "dg5f_ll_dg_palm", "dg5f_ll_dg_1_1", "dg5f_ll_dg_2_1", "dg5f_ll_dg_3_1", "dg5f_ll_dg_4_1", "dg5f_ll_dg_5_1"],
+      # DG5F Gripper base
+      "dg5f_ll_dg_base": ["dg5f_ll_dg_palm", "dg5f_ll_dg_1_1", "dg5f_ll_dg_2_1", "dg5f_ll_dg_3_1", "dg5f_ll_dg_4_1", "dg5f_ll_dg_5_1"],
+      "dg5f_ll_dg_palm": ["dg5f_ll_dg_1_1", "dg5f_ll_dg_1_2", "dg5f_ll_dg_1_3", "dg5f_ll_dg_2_1", "dg5f_ll_dg_2_2", "dg5f_ll_dg_2_3", "dg5f_ll_dg_3_1", "dg5f_ll_dg_3_2", "dg5f_ll_dg_3_3", "dg5f_ll_dg_4_1", "dg5f_ll_dg_4_2", "dg5f_ll_dg_4_3", "dg5f_ll_dg_5_1", "dg5f_ll_dg_5_2", "dg5f_ll_dg_5_3"],
+      # DG5F Finger 1 chain
+      "dg5f_ll_dg_1_1": ["dg5f_ll_dg_1_2", "dg5f_ll_dg_1_3", "dg5f_ll_dg_2_1", "dg5f_ll_dg_2_2", "dg5f_ll_dg_3_1", "dg5f_ll_dg_5_1"],
+      "dg5f_ll_dg_1_2": ["dg5f_ll_dg_1_3", "dg5f_ll_dg_1_4", "dg5f_ll_dg_2_1", "dg5f_ll_dg_2_2"],
+      "dg5f_ll_dg_1_3": ["dg5f_ll_dg_1_4", "dg5f_ll_dg_1_tip", "dg5f_ll_dg_2_1"],
+      "dg5f_ll_dg_1_4": ["dg5f_ll_dg_1_tip"],
+      # DG5F Finger 2 chain
+      "dg5f_ll_dg_2_1": ["dg5f_ll_dg_2_2", "dg5f_ll_dg_2_3", "dg5f_ll_dg_3_1", "dg5f_ll_dg_3_2"],
+      "dg5f_ll_dg_2_2": ["dg5f_ll_dg_2_3", "dg5f_ll_dg_2_4", "dg5f_ll_dg_3_1", "dg5f_ll_dg_3_2"],
+      "dg5f_ll_dg_2_3": ["dg5f_ll_dg_2_4", "dg5f_ll_dg_2_tip", "dg5f_ll_dg_3_1"],
+      "dg5f_ll_dg_2_4": ["dg5f_ll_dg_2_tip"],
+      # DG5F Finger 3 chain
+      "dg5f_ll_dg_3_1": ["dg5f_ll_dg_3_2", "dg5f_ll_dg_3_3", "dg5f_ll_dg_4_1", "dg5f_ll_dg_4_2"],
+      "dg5f_ll_dg_3_2": ["dg5f_ll_dg_3_3", "dg5f_ll_dg_3_4", "dg5f_ll_dg_4_1", "dg5f_ll_dg_4_2"],
+      "dg5f_ll_dg_3_3": ["dg5f_ll_dg_3_4", "dg5f_ll_dg_3_tip", "dg5f_ll_dg_4_1"],
+      "dg5f_ll_dg_3_4": ["dg5f_ll_dg_3_tip"],
+      # DG5F Finger 4 chain
+      "dg5f_ll_dg_4_1": ["dg5f_ll_dg_4_2", "dg5f_ll_dg_4_3", "dg5f_ll_dg_5_1", "dg5f_ll_dg_5_2"],
+      "dg5f_ll_dg_4_2": ["dg5f_ll_dg_4_3", "dg5f_ll_dg_4_4", "dg5f_ll_dg_5_1", "dg5f_ll_dg_5_2"],
+      "dg5f_ll_dg_4_3": ["dg5f_ll_dg_4_4", "dg5f_ll_dg_4_tip", "dg5f_ll_dg_5_1"],
+      "dg5f_ll_dg_4_4": ["dg5f_ll_dg_4_tip"],
+      # DG5F Finger 5 chain
+      "dg5f_ll_dg_5_1": ["dg5f_ll_dg_5_2", "dg5f_ll_dg_5_3"],
+      "dg5f_ll_dg_5_2": ["dg5f_ll_dg_5_3", "dg5f_ll_dg_5_4"],
+      "dg5f_ll_dg_5_3": ["dg5f_ll_dg_5_4", "dg5f_ll_dg_5_tip"],
+      "dg5f_ll_dg_5_4": ["dg5f_ll_dg_5_tip"],
+    }
+
+    # self_collision_buffer: HAND links only with -0.01 (ARM links use default=0 for inter-arm collision)
+    # === OLD CONFIG (all -0.05) - uncomment to revert ===
+    # self_collision_buffer: {
+    #   'rh56_base_body_link': -0.05, 'rh56_lower_frame_link': -0.05, 'rh56_upper_frame_link': -0.05,
+    #   'rh56_arm_link': -0.05, 'rh56_wrist_body_link': -0.05, 'rh56_wrist_holder_link': -0.05,
+    #   'rh56_flange_link': -0.05, 'rh56_axia_80_ft_sensor': -0.05,
+    #   'rh56_gripper_base_link': -0.05, 'rh56_plam_1': -0.05,
+    #   'rh56_right_thumb_1': -0.05, 'rh56_right_thumb_2': -0.05,
+    #   'rh56_right_index_1': -0.05, 'rh56_right_middle_1': -0.05, 'rh56_right_ring_1': -0.05, 'rh56_right_little_1': -0.05,
+    #   'dg5f_base_body_link': -0.05, 'dg5f_lower_frame_link': -0.05, 'dg5f_upper_frame_link': -0.05,
+    #   'dg5f_arm_link': -0.05, 'dg5f_wrist_body_link': -0.05, 'dg5f_wrist_holder_link': -0.05,
+    #   'dg5f_flange_link': -0.05, 'dg5f_axia_80_ft_sensor': -0.05,
+    #   'dg5f_ll_dg_base': -0.05, 'dg5f_ll_dg_palm': -0.05,
+    #   'dg5f_ll_dg_1_1': -0.05, ... (all fingers -0.05)
+    # }
+    # === NEW CONFIG: HAND links only -0.01, ARM links default (0) ===
+    self_collision_buffer: {
+      # RH56 HAND only (small radius links: 0.011~0.04)
+      'rh56_gripper_base_link': -0.01,
+      'rh56_plam_1': -0.01,
+      'rh56_right_thumb_1': -0.01,
+      'rh56_right_thumb_2': -0.01,
+      'rh56_right_index_1': -0.01,
+      'rh56_right_middle_1': -0.01,
+      'rh56_right_ring_1': -0.01,
+      'rh56_right_little_1': -0.01,
+      # DG5F HAND only (small radius links: 0.010~0.04)
+      'dg5f_ll_dg_base': -0.01,
+      'dg5f_ll_dg_palm': -0.01,
+      'dg5f_ll_dg_1_1': -0.01, 'dg5f_ll_dg_1_2': -0.01, 'dg5f_ll_dg_1_3': -0.01, 'dg5f_ll_dg_1_4': -0.01, 'dg5f_ll_dg_1_tip': -0.01,
+      'dg5f_ll_dg_2_1': -0.01, 'dg5f_ll_dg_2_2': -0.01, 'dg5f_ll_dg_2_3': -0.01, 'dg5f_ll_dg_2_4': -0.01, 'dg5f_ll_dg_2_tip': -0.01,
+      'dg5f_ll_dg_3_1': -0.01, 'dg5f_ll_dg_3_2': -0.01, 'dg5f_ll_dg_3_3': -0.01, 'dg5f_ll_dg_3_4': -0.01, 'dg5f_ll_dg_3_tip': -0.01,
+      'dg5f_ll_dg_4_1': -0.01, 'dg5f_ll_dg_4_2': -0.01, 'dg5f_ll_dg_4_3': -0.01, 'dg5f_ll_dg_4_4': -0.01, 'dg5f_ll_dg_4_tip': -0.01,
+      'dg5f_ll_dg_5_1': -0.01, 'dg5f_ll_dg_5_2': -0.01, 'dg5f_ll_dg_5_3': -0.01, 'dg5f_ll_dg_5_4': -0.01, 'dg5f_ll_dg_5_tip': -0.01,
+    }
+
+    use_global_cumul: True
+    mesh_link_names: [
+      # RH56 arm + ATI + gripper
+      'rh56_base_body_link', 'rh56_lower_frame_link', 'rh56_upper_frame_link',
+      'rh56_arm_link', 'rh56_wrist_body_link', 'rh56_wrist_holder_link', 'rh56_flange_link',
+      'rh56_axia_80_ft_sensor',
+      'rh56_gripper_base_link', 'rh56_plam_1', 'rh56_plam_2', 'rh56_plam_3',
+      'rh56_right_thumb_1', 'rh56_right_thumb_2', 'rh56_right_thumb_3', 'rh56_right_thumb_4',
+      'rh56_right_index_1', 'rh56_right_index_2',
+      'rh56_right_middle_1', 'rh56_right_middle_2',
+      'rh56_right_ring_1', 'rh56_right_ring_2',
+      'rh56_right_little_1', 'rh56_right_little_2',
+      # DG5F arm + ATI + gripper (including mount and tips)
+      'dg5f_base_body_link', 'dg5f_lower_frame_link', 'dg5f_upper_frame_link',
+      'dg5f_arm_link', 'dg5f_wrist_body_link', 'dg5f_wrist_holder_link', 'dg5f_flange_link',
+      'dg5f_axia_80_ft_sensor',
+      'dg5f_ll_dg_base', 'dg5f_ll_dg_palm',
+      'dg5f_ll_dg_1_1', 'dg5f_ll_dg_1_2', 'dg5f_ll_dg_1_3', 'dg5f_ll_dg_1_4', 'dg5f_ll_dg_1_tip',
+      'dg5f_ll_dg_2_1', 'dg5f_ll_dg_2_2', 'dg5f_ll_dg_2_3', 'dg5f_ll_dg_2_4', 'dg5f_ll_dg_2_tip',
+      'dg5f_ll_dg_3_1', 'dg5f_ll_dg_3_2', 'dg5f_ll_dg_3_3', 'dg5f_ll_dg_3_4', 'dg5f_ll_dg_3_tip',
+      'dg5f_ll_dg_4_1', 'dg5f_ll_dg_4_2', 'dg5f_ll_dg_4_3', 'dg5f_ll_dg_4_4', 'dg5f_ll_dg_4_tip',
+      'dg5f_ll_dg_5_1', 'dg5f_ll_dg_5_2', 'dg5f_ll_dg_5_3', 'dg5f_ll_dg_5_4', 'dg5f_ll_dg_5_tip'
+    ]
+
+    cspace:
+      # 12 arm joints (6 per arm), gripper joints locked
+      joint_names: [
+        'rh56_j1', 'rh56_j2', 'rh56_j3', 'rh56_j4', 'rh56_j5', 'rh56_j6',
+        'dg5f_j1', 'dg5f_j2', 'dg5f_j3', 'dg5f_j4', 'dg5f_j5', 'dg5f_j6'
+      ]
+
+      # Retract configuration (same as single-robot: all zeros)
+      retract_config: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                       0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+      # Null space weights for redundancy resolution
+      null_space_weight: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+                          1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+      # C-space distance weights
+      cspace_distance_weight: [1.0, 0.9, 0.8, 0.7, 0.6, 0.5,
+                               1.0, 0.9, 0.8, 0.7, 0.6, 0.5]
+
+      # Max jerk and acceleration
+      max_jerk: 500.0
+      max_acceleration: 12.0
+
+      # Position limit clipping
+      position_limit_clip: 0.1

@@ -1,0 +1,114 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+## HDR35_20 + RH56F1_R Robot Configuration
+## 6-DOF Hyundai arm + 5-finger Robotiq gripper (18-DOF total, gripper locked)
+##
+
+robot_cfg:
+  kinematics:
+    use_usd_kinematics: False
+    usd_path: "robot/hdr35_20_rh56f1_r_description/hdr35_20_rh56f1_r_sensor_temp.usd"
+    usd_robot_root: "/robot"
+    isaac_usd_path: ""
+    usd_flip_joints: {}
+    usd_flip_joint_limits: []
+
+    urdf_path: "robot/hdr35_20_rh56f1_r_description/hdr35_20_rh56f1_r.urdf"
+    asset_root_path: "robot/hdr35_20_rh56f1_r_description"
+
+    base_link: "base_link"
+    ee_link: "gripper_base_link"
+    link_names: null
+    lock_joints: {
+      'right_thumb_1_joint': 0.0,
+      'right_thumb_2_joint': 0.0,
+      'right_index_1_joint': 0.0,
+      'right_middle_1_joint': 0.0,
+      'right_ring_1_joint': 0.0,
+      'right_little_1_joint': 0.
+    }
+    extra_links: null
+
+
+    collision_link_names: [
+      # Arm links
+      'base_body_link', 'lower_frame_link', 'upper_frame_link',
+      'arm_link', 'wrist_body_link', 'wrist_holder_link', 'flange_link',
+      # Gripper base only (fingers locked)
+      'gripper_base_link'
+    ]
+
+    # Collision spheres (UR10e-style uniform spacing for arm + simplified gripper)
+    # Sphere data defined in separate file for better organization
+    collision_spheres: 'spheres/hdr35_20_rh56f1_r.yml'
+
+
+    collision_sphere_buffer: 0.005
+    extra_collision_spheres: {}
+
+    # Self-collision ignore pairs
+    self_collision_ignore: {
+      # Arm self-collision
+      "base_body_link": ["lower_frame_link"],
+      "lower_frame_link": ["upper_frame_link", "base_body_link"],
+      "upper_frame_link": ["arm_link", "lower_frame_link"],
+      "arm_link": ["wrist_body_link", "upper_frame_link"],
+      "wrist_body_link": ["wrist_holder_link", "arm_link"],
+      "wrist_holder_link": ["flange_link", "wrist_body_link"],
+      "flange_link": ["wrist_holder_link", "gripper_base_link"],
+      "gripper_base_link": ["flange_link", "wrist_holder_link", "wrist_body_link"],
+    }
+
+    self_collision_buffer: {
+      'base_body_link': 0.005,
+      'lower_frame_link': 0.005,
+      'upper_frame_link': 0.005,
+      'arm_link': 0.005,
+      'wrist_body_link': 0.01,
+      'wrist_holder_link': 0.01,
+      'flange_link': 0.01,
+      'gripper_base_link': 0.01,
+    }
+
+    use_global_cumul: True
+    mesh_link_names: [
+      'base_body_link', 'lower_frame_link', 'upper_frame_link',
+      'arm_link', 'wrist_body_link', 'wrist_holder_link', 'flange_link',
+      'gripper_base_link'
+    ]
+
+    cspace:
+      # HDR35_20 arm (j1-j6) + RH56F1 gripper actuated joints (locked but in cspace for FK)
+      joint_names: [
+        'j1', 'j2', 'j3', 'j4', 'j5', 'j6',
+        'right_thumb_1_joint', 'right_thumb_2_joint',
+        'right_index_1_joint', 'right_middle_1_joint',
+        'right_ring_1_joint', 'right_little_1_joint'
+      ]
+
+      # Retract configuration (safe home position) - 12 values
+      retract_config: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                       0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+      # Null space weights - 12 values
+      null_space_weight: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+                          1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+      # C-space distance weights (arm prioritized, gripper low weight)
+      cspace_distance_weight: [1.0, 0.9, 0.8, 0.7, 0.6, 0.5,
+                               0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+
+      # Max jerk and acceleration
+      max_jerk: 500.0
+      max_acceleration: 12.0
+
+      # Position limit clipping
+      position_limit_clip: 0.1

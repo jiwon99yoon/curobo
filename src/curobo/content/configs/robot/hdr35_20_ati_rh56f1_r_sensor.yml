@@ -1,0 +1,221 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+## HDR35_20 + ATI Axia80 FT Sensor + RH56F1_R Robot Configuration (with sensors)
+## 6-DOF Hyundai arm + ATI FT Sensor + 5-finger gripper
+## Following ur5e_robotiq_2f_140 approach: actuated joints in cspace, locked
+## Mimic joints NOT in cspace - cuRobo handles via URDF mimic relationship
+##
+
+robot_cfg:
+  kinematics:
+    base_link: base_link
+    ee_link: gripper_base_link
+    link_names: null
+
+    urdf_path: /home/dyros/remove_hook/content/assets/robot/hdr35_20_rh56f1_r_description/hdr35_20_ati_rh56f1_r_sensor.urdf
+    asset_root_path: /home/dyros/remove_hook/content/assets/robot/hdr35_20_rh56f1_r_description
+
+    # Lock actuated gripper joints (mimic joints follow automatically via URDF)
+    lock_joints:
+      right_thumb_1_joint: 0.0
+      right_thumb_2_joint: 0.0
+      right_index_1_joint: 0.0
+      right_middle_1_joint: 0.0
+      right_ring_1_joint: 0.0
+      right_little_1_joint: 0.0
+
+    # NOTE: Links moved by mimic joints are excluded because cuRobo cannot
+    #       compute collision spheres for mimic joint links
+    collision_link_names:
+      # Arm links
+      - base_body_link
+      - lower_frame_link
+      - upper_frame_link
+      - arm_link
+      - wrist_body_link
+      - wrist_holder_link
+      - flange_link
+      # ATI FT Sensor (NEW)
+      - axia_80_ft_sensor
+      # Gripper base and palm
+      - gripper_base_link
+      - plam_1
+      # Thumb - only segments 1 and 2 (actuated joints)
+      # right_thumb_3, right_thumb_4 excluded (mimic joints)
+      - right_thumb_1
+      - right_thumb_2
+      # Index finger - only segment 1 (actuated joint)
+      # right_index_2 excluded (mimic joint)
+      - right_index_1
+      # Middle finger - only segment 1 (actuated joint)
+      # right_middle_2 excluded (mimic joint)
+      - right_middle_1
+      # Ring finger - only segment 1 (actuated joint)
+      # right_ring_2 excluded (mimic joint)
+      - right_ring_1
+      # Little finger - only segment 1 (actuated joint)
+      # right_little_2 excluded (mimic joint)
+      - right_little_1
+
+    # NOTE: Mimic joint links excluded (right_thumb_3/4, right_*_2)
+    mesh_link_names:
+      # Arm links
+      - base_body_link
+      - lower_frame_link
+      - upper_frame_link
+      - arm_link
+      - wrist_body_link
+      - wrist_holder_link
+      - flange_link
+      # ATI FT Sensor (NEW)
+      - axia_80_ft_sensor
+      # Gripper base and palm
+      - gripper_base_link
+      - plam_1
+      # Thumb (only actuated joint links)
+      - right_thumb_1
+      - right_thumb_2
+      # Index finger (only actuated joint link)
+      - right_index_1
+      # Middle finger (only actuated joint link)
+      - right_middle_1
+      # Ring finger (only actuated joint link)
+      - right_ring_1
+      # Little finger (only actuated joint link)
+      - right_little_1
+
+    collision_sphere_buffer: -0.01
+    collision_spheres: /home/dyros/remove_hook/content/configs/robot/spheres/hdr35_20_ati_rh56f1_r_sensor.yml
+
+    # NOTE: Mimic joint links excluded (right_thumb_3/4, right_*_2)
+    self_collision_buffer:
+      base_body_link: -0.05
+      lower_frame_link: -0.05
+      upper_frame_link: -0.05
+      arm_link: -0.05
+      wrist_body_link: -0.05
+      wrist_holder_link: -0.05
+      flange_link: -0.05
+      axia_80_ft_sensor: -0.05
+      gripper_base_link: -0.05
+      plam_1: -0.05
+      right_thumb_1: -0.05
+      right_thumb_2: -0.05
+      right_index_1: -0.05
+      right_middle_1: -0.05
+      right_ring_1: -0.05
+      right_little_1: -0.05
+
+    # NOTE: Mimic joint links excluded (right_thumb_3/4, right_*_2)
+    self_collision_ignore:
+      {
+        # Arm chain
+        base_body_link: [lower_frame_link, upper_frame_link, arm_link],
+        lower_frame_link: [upper_frame_link, arm_link, wrist_body_link],
+        upper_frame_link: [arm_link, wrist_body_link, wrist_holder_link],
+        arm_link: [wrist_body_link, wrist_holder_link, flange_link, axia_80_ft_sensor, gripper_base_link],
+        wrist_body_link: [wrist_holder_link, flange_link, axia_80_ft_sensor, gripper_base_link],
+        wrist_holder_link: [flange_link, axia_80_ft_sensor, gripper_base_link, plam_1],
+        flange_link: [axia_80_ft_sensor, gripper_base_link, plam_1],
+
+        # ATI FT Sensor (NEW)
+        axia_80_ft_sensor: [flange_link, gripper_base_link, plam_1],
+
+        # Gripper base with all fingers
+        gripper_base_link: [axia_80_ft_sensor, plam_1, right_thumb_1, right_index_1, right_middle_1, right_ring_1, right_little_1],
+
+        # Palm with fingers (only actuated joint links)
+        plam_1:
+          [
+            right_thumb_1,
+            right_thumb_2,
+            right_index_1,
+            right_middle_1,
+            right_ring_1,
+            right_little_1,
+          ],
+
+        # Thumb chain (only actuated joint links)
+        right_thumb_1: [right_thumb_2, gripper_base_link, plam_1],
+        right_thumb_2: [right_thumb_1, plam_1],
+
+        # Index (only actuated joint link)
+        right_index_1: [gripper_base_link, plam_1, right_middle_1],
+
+        # Middle (only actuated joint link)
+        right_middle_1: [gripper_base_link, plam_1, right_index_1, right_ring_1],
+
+        # Ring (only actuated joint link)
+        right_ring_1: [gripper_base_link, plam_1, right_middle_1, right_little_1],
+
+        # Little (only actuated joint link)
+        right_little_1: [gripper_base_link, plam_1, right_ring_1],
+      }
+
+    cspace:
+      # 6 arm joints + 6 actuated gripper joints = 12 total
+      # Mimic joints NOT included - cuRobo handles via URDF mimic relationship
+      joint_names:
+        [
+          'j1', 'j2', 'j3', 'j4', 'j5', 'j6',
+          'right_thumb_1_joint', 'right_thumb_2_joint',
+          'right_index_1_joint', 'right_middle_1_joint',
+          'right_ring_1_joint', 'right_little_1_joint'
+        ]
+
+      # 12 values (arm prioritized, gripper low weight)
+      cspace_distance_weight:
+        - 1.0
+        - 1.0
+        - 0.9
+        - 0.8
+        - 0.7
+        - 0.6
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+
+      # 12 values
+      null_space_weight:
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+
+      # 12 values
+      retract_config:
+        - 0.0  # j1
+        - 0.0  # j2
+        - 0.0  # j3
+        - 0.0  # j4
+        - 0.0  # j5
+        - 0.0  # j6
+        - 0.0  # right_thumb_1_joint
+        - 0.0  # right_thumb_2_joint
+        - 0.0  # right_index_1_joint
+        - 0.0  # right_middle_1_joint
+        - 0.0  # right_ring_1_joint
+        - 0.0  # right_little_1_joint
+
+      max_acceleration: 15.0
+      max_jerk: 500.0
+      position_limit_clip: 0.0

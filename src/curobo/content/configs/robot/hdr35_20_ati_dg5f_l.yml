@@ -1,0 +1,414 @@
+##
+## Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+##
+## NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+## property and proprietary rights in and to this material, related
+## documentation and any modifications thereto. Any use, reproduction,
+## disclosure or distribution of this material and related documentation
+## without an express license agreement from NVIDIA CORPORATION or
+## its affiliates is strictly prohibited.
+##
+robot_cfg:
+  kinematics:
+    base_link: base_link
+    collision_link_names:
+      - base_body_link
+      - lower_frame_link
+      - upper_frame_link
+      - arm_link
+      - wrist_body_link
+      - wrist_holder_link
+      - flange_link
+      - axia_80_ft_sensor
+      - ll_dg_mount
+      - ll_dg_base
+      - ll_dg_palm
+      - ll_dg_1_1
+      - ll_dg_1_2
+      - ll_dg_1_3
+      - ll_dg_1_4
+      - ll_dg_1_tip
+      - ll_dg_2_1
+      - ll_dg_2_2
+      - ll_dg_2_3
+      - ll_dg_2_4
+      - ll_dg_2_tip
+      - ll_dg_3_1
+      - ll_dg_3_2
+      - ll_dg_3_3
+      - ll_dg_3_4
+      - ll_dg_3_tip
+      - ll_dg_4_1
+      - ll_dg_4_2
+      - ll_dg_4_3
+      - ll_dg_4_4
+      - ll_dg_4_tip
+      - ll_dg_5_1
+      - ll_dg_5_2
+      - ll_dg_5_3
+      - ll_dg_5_4
+      - ll_dg_5_tip
+    mesh_link_names:
+      - base_body_link
+      - lower_frame_link
+      - upper_frame_link
+      - arm_link
+      - wrist_body_link
+      - wrist_holder_link
+      - flange_link
+      - axia_80_ft_sensor
+      - ll_dg_mount
+      - ll_dg_base
+      - ll_dg_palm
+      - ll_dg_1_1
+      - ll_dg_1_2
+      - ll_dg_1_3
+      - ll_dg_1_4
+      - ll_dg_1_tip
+      - ll_dg_2_1
+      - ll_dg_2_2
+      - ll_dg_2_3
+      - ll_dg_2_4
+      - ll_dg_2_tip
+      - ll_dg_3_1
+      - ll_dg_3_2
+      - ll_dg_3_3
+      - ll_dg_3_4
+      - ll_dg_3_tip
+      - ll_dg_4_1
+      - ll_dg_4_2
+      - ll_dg_4_3
+      - ll_dg_4_4
+      - ll_dg_4_tip
+      - ll_dg_5_1
+      - ll_dg_5_2
+      - ll_dg_5_3
+      - ll_dg_5_4
+      - ll_dg_5_tip
+    collision_sphere_buffer: -0.01
+    collision_spheres: spheres/hdr35_20_ati_dg5f_l.yml
+    ee_link: ll_dg_palm
+    link_names: null
+    self_collision_buffer:
+      base_body_link: -0.05
+      lower_frame_link: -0.05
+      upper_frame_link: -0.05
+      arm_link: -0.05
+      wrist_body_link: -0.05
+      wrist_holder_link: -0.05
+      flange_link: -0.05
+      axia_80_ft_sensor: -0.05
+      ll_dg_mount: -0.05
+      ll_dg_base: -0.05
+      ll_dg_palm: -0.05
+      ll_dg_1_1: -0.05
+      ll_dg_1_2: -0.05
+      ll_dg_1_3: -0.05
+      ll_dg_1_4: -0.05
+      ll_dg_1_tip: -0.05
+      ll_dg_2_1: -0.05
+      ll_dg_2_2: -0.05
+      ll_dg_2_3: -0.05
+      ll_dg_2_4: -0.05
+      ll_dg_2_tip: -0.05
+      ll_dg_3_1: -0.05
+      ll_dg_3_2: -0.05
+      ll_dg_3_3: -0.05
+      ll_dg_3_4: -0.05
+      ll_dg_3_tip: -0.05
+      ll_dg_4_1: -0.05
+      ll_dg_4_2: -0.05
+      ll_dg_4_3: -0.05
+      ll_dg_4_4: -0.05
+      ll_dg_4_tip: -0.05
+      ll_dg_5_1: -0.05
+      ll_dg_5_2: -0.05
+      ll_dg_5_3: -0.05
+      ll_dg_5_4: -0.05
+      ll_dg_5_tip: -0.05
+    self_collision_ignore:
+      {
+        base_body_link: [lower_frame_link, upper_frame_link, arm_link],
+        lower_frame_link: [upper_frame_link, arm_link, wrist_body_link],
+        upper_frame_link: [arm_link, wrist_body_link, wrist_holder_link],
+        arm_link: [wrist_body_link, wrist_holder_link, flange_link, axia_80_ft_sensor, ll_dg_mount, ll_dg_base],
+        wrist_body_link: [wrist_holder_link, flange_link, axia_80_ft_sensor, ll_dg_mount, ll_dg_base],
+        wrist_holder_link: [flange_link, axia_80_ft_sensor, ll_dg_mount, ll_dg_base, ll_dg_palm],
+        flange_link: [axia_80_ft_sensor, ll_dg_mount, ll_dg_base, ll_dg_palm],
+        axia_80_ft_sensor: [ll_dg_mount, ll_dg_base, ll_dg_palm, ll_dg_1_1, ll_dg_2_1, ll_dg_3_1, ll_dg_4_1, ll_dg_5_1],
+        ll_dg_mount: [ll_dg_base, ll_dg_palm, ll_dg_1_1, ll_dg_2_1, ll_dg_3_1, ll_dg_4_1, ll_dg_5_1],
+        ll_dg_base: [ll_dg_palm, ll_dg_1_1, ll_dg_2_1, ll_dg_3_1, ll_dg_4_1, ll_dg_5_1],
+        ll_dg_palm:
+          [
+            ll_dg_1_1,
+            ll_dg_1_2,
+            ll_dg_1_3,
+            ll_dg_2_1,
+            ll_dg_2_2,
+            ll_dg_2_3,
+            ll_dg_3_1,
+            ll_dg_3_2,
+            ll_dg_3_3,
+            ll_dg_4_1,
+            ll_dg_4_2,
+            ll_dg_4_3,
+            ll_dg_5_1,
+            ll_dg_5_2,
+            ll_dg_5_3,
+          ],
+        ll_dg_1_1: [ll_dg_1_2, ll_dg_1_3, ll_dg_2_1, ll_dg_2_2, ll_dg_3_1, ll_dg_5_1],
+        ll_dg_1_2: [ll_dg_1_3, ll_dg_1_4, ll_dg_2_1, ll_dg_2_2],
+        ll_dg_1_3: [ll_dg_1_4, ll_dg_1_tip, ll_dg_2_1],
+        ll_dg_1_4: [ll_dg_1_tip],
+        ll_dg_2_1: [ll_dg_2_2, ll_dg_2_3, ll_dg_3_1, ll_dg_3_2],
+        ll_dg_2_2: [ll_dg_2_3, ll_dg_2_4, ll_dg_3_1, ll_dg_3_2],
+        ll_dg_2_3: [ll_dg_2_4, ll_dg_2_tip, ll_dg_3_1],
+        ll_dg_2_4: [ll_dg_2_tip],
+        ll_dg_3_1: [ll_dg_3_2, ll_dg_3_3, ll_dg_4_1, ll_dg_4_2],
+        ll_dg_3_2: [ll_dg_3_3, ll_dg_3_4, ll_dg_4_1, ll_dg_4_2],
+        ll_dg_3_3: [ll_dg_3_4, ll_dg_3_tip, ll_dg_4_1],
+        ll_dg_3_4: [ll_dg_3_tip],
+        ll_dg_4_1: [ll_dg_4_2, ll_dg_4_3, ll_dg_5_1, ll_dg_5_2],
+        ll_dg_4_2: [ll_dg_4_3, ll_dg_4_4, ll_dg_5_1, ll_dg_5_2],
+        ll_dg_4_3: [ll_dg_4_4, ll_dg_4_tip, ll_dg_5_1],
+        ll_dg_4_4: [ll_dg_4_tip],
+        ll_dg_5_1: [ll_dg_5_2, ll_dg_5_3],
+        ll_dg_5_2: [ll_dg_5_3, ll_dg_5_4],
+        ll_dg_5_3: [ll_dg_5_4, ll_dg_5_tip],
+        ll_dg_5_4: [ll_dg_5_tip],
+      }
+    urdf_path: robot/hdr35_20_dg5f_l_description/hdr35_20_ati_dg5f_l.urdf
+    asset_root_path: robot/hdr35_20_dg5f_l_description
+    lock_joints:
+      ## 모든 손가락 펼친 상태 (dual-arm 설정과 통일, 2026-02-09 수정)
+      lj_dg_1_1: 0.0
+      lj_dg_1_2: 0.0
+      lj_dg_1_3: 0.0
+      lj_dg_1_4: 0.0
+      lj_dg_2_1: 0.0
+      lj_dg_2_2: 0.0
+      lj_dg_2_3: 0.0
+      lj_dg_2_4: 0.0
+      lj_dg_3_1: 0.0
+      lj_dg_3_2: 0.0
+      lj_dg_3_3: 0.0
+      lj_dg_3_4: 0.0
+      lj_dg_4_1: 0.0
+      lj_dg_4_2: 0.0
+      lj_dg_4_3: 0.0
+      lj_dg_4_4: 0.0
+      lj_dg_5_1: 0.0
+      lj_dg_5_2: 0.0
+      lj_dg_5_3: 0.0
+      lj_dg_5_4: 0.0
+      ## 손가락 2-4만 접힌 상태 (손가락 1, 5는 펼침)
+      # lj_dg_1_1: 0.0
+      # lj_dg_1_2: 0.0
+      # lj_dg_1_3: 0.0
+      # lj_dg_1_4: 0.0
+      # lj_dg_2_1: 0.0
+      # lj_dg_2_2: 1.0
+      # lj_dg_2_3: 1.0
+      # lj_dg_2_4: 1.0
+      # lj_dg_3_1: 0.0
+      # lj_dg_3_2: 1.0
+      # lj_dg_3_3: 1.0
+      # lj_dg_3_4: 1.0
+      # lj_dg_4_1: 0.0
+      # lj_dg_4_2: 1.0
+      # lj_dg_4_3: 1.0
+      # lj_dg_4_4: 1.0
+      # lj_dg_5_1: 0.0
+      # lj_dg_5_2: 0.0
+      # lj_dg_5_3: 0.0
+      # lj_dg_5_4: 0.0
+      ## 모든 손가락 펼친 상태
+      # lj_dg_1_1: 0.0
+      # lj_dg_1_2: 0.0
+      # lj_dg_1_3: 0.0
+      # lj_dg_1_4: 0.0
+      # lj_dg_2_1: 0.0
+      # lj_dg_2_2: 0.0
+      # lj_dg_2_3: 0.0
+      # lj_dg_2_4: 0.0
+      # lj_dg_3_1: 0.0
+      # lj_dg_3_2: 0.0
+      # lj_dg_3_3: 0.0
+      # lj_dg_3_4: 0.0
+      # lj_dg_4_1: 0.0
+      # lj_dg_4_2: 0.0
+      # lj_dg_4_3: 0.0
+      # lj_dg_4_4: 0.0
+      # lj_dg_5_1: 0.0
+      # lj_dg_5_2: 0.0
+      # lj_dg_5_3: 0.0
+      # lj_dg_5_4: 0.0
+    cspace:
+      joint_names:
+        [
+          "j1",
+          "j2",
+          "j3",
+          "j4",
+          "j5",
+          "j6",
+          "lj_dg_1_1",
+          "lj_dg_1_2",
+          "lj_dg_1_3",
+          "lj_dg_1_4",
+          "lj_dg_2_1",
+          "lj_dg_2_2",
+          "lj_dg_2_3",
+          "lj_dg_2_4",
+          "lj_dg_3_1",
+          "lj_dg_3_2",
+          "lj_dg_3_3",
+          "lj_dg_3_4",
+          "lj_dg_4_1",
+          "lj_dg_4_2",
+          "lj_dg_4_3",
+          "lj_dg_4_4",
+          "lj_dg_5_1",
+          "lj_dg_5_2",
+          "lj_dg_5_3",
+          "lj_dg_5_4",
+        ]
+      cspace_distance_weight:
+        - 1.0
+        - 1.0
+        - 0.9
+        - 0.8
+        - 0.7
+        - 0.6
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+        - 0.1
+
+      null_space_weight:
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+        - 1.0
+      retract_config:
+        ## 모든 손가락 펼친 상태 (dual-arm 설정과 통일, 2026-02-09 수정)
+        - 0.0  # j1
+        - 0.0  # j2
+        - 0.0  # j3
+        - 0.0  # j4
+        - 0.0  # j5
+        - 0.0  # j6
+        - 0.0  # lj_dg_1_1
+        - 0.0  # lj_dg_1_2
+        - 0.0  # lj_dg_1_3
+        - 0.0  # lj_dg_1_4
+        - 0.0  # lj_dg_2_1
+        - 0.0  # lj_dg_2_2
+        - 0.0  # lj_dg_2_3
+        - 0.0  # lj_dg_2_4
+        - 0.0  # lj_dg_3_1
+        - 0.0  # lj_dg_3_2
+        - 0.0  # lj_dg_3_3
+        - 0.0  # lj_dg_3_4
+        - 0.0  # lj_dg_4_1
+        - 0.0  # lj_dg_4_2
+        - 0.0  # lj_dg_4_3
+        - 0.0  # lj_dg_4_4
+        - 0.0  # lj_dg_5_1
+        - 0.0  # lj_dg_5_2
+        - 0.0  # lj_dg_5_3
+        - 0.0  # lj_dg_5_4
+        ## 손가락 2-4만 접힌 상태 (손가락 1, 5는 펼침)
+        # - 0.0  # j1
+        # - 0.0  # j2
+        # - 0.0  # j3
+        # - 0.0  # j4
+        # - 0.0  # j5
+        # - 0.0  # j6
+        # - 0.0  # lj_dg_1_1
+        # - 0.0  # lj_dg_1_2
+        # - 0.0  # lj_dg_1_3
+        # - 0.0  # lj_dg_1_4
+        # - 0.0  # lj_dg_2_1
+        # - 1.0  # lj_dg_2_2
+        # - 1.0  # lj_dg_2_3
+        # - 1.0  # lj_dg_2_4
+        # - 0.0  # lj_dg_3_1
+        # - 1.0  # lj_dg_3_2
+        # - 1.0  # lj_dg_3_3
+        # - 1.0  # lj_dg_3_4
+        # - 0.0  # lj_dg_4_1
+        # - 1.0  # lj_dg_4_2
+        # - 1.0  # lj_dg_4_3
+        # - 1.0  # lj_dg_4_4
+        # - 0.0  # lj_dg_5_1
+        # - 0.0  # lj_dg_5_2
+        # - 0.0  # lj_dg_5_3
+        # - 0.0  # lj_dg_5_4
+        ## 모든 손가락 펼친 상태
+        # - 0.0  # j1
+        # - 0.0  # j2
+        # - 0.0  # j3
+        # - 0.0  # j4
+        # - 0.0  # j5
+        # - 0.0  # j6
+        # - 0.0  # lj_dg_1_1
+        # - 0.0  # lj_dg_1_2
+        # - 0.0  # lj_dg_1_3
+        # - 0.0  # lj_dg_1_4
+        # - 0.0  # lj_dg_2_1
+        # - 0.0  # lj_dg_2_2
+        # - 0.0  # lj_dg_2_3
+        # - 0.0  # lj_dg_2_4
+        # - 0.0  # lj_dg_3_1
+        # - 0.0  # lj_dg_3_2
+        # - 0.0  # lj_dg_3_3
+        # - 0.0  # lj_dg_3_4
+        # - 0.0  # lj_dg_4_1
+        # - 0.0  # lj_dg_4_2
+        # - 0.0  # lj_dg_4_3
+        # - 0.0  # lj_dg_4_4
+        # - 0.0  # lj_dg_5_1
+        # - 0.0  # lj_dg_5_2
+        # - 0.0  # lj_dg_5_3
+        # - 0.0  # lj_dg_5_4
+      max_acceleration: 15.0
+      max_jerk: 500.0
